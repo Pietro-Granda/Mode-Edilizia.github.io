@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edil Milano Style Demo</title>
+  <style>
+    :root {
+      --bg: #f5f1ea;
+      --surface: #fffaf3;
+      --ink: #1f2a2f;
+      --muted: #66727a;
+      --brand: #fe5e15;
+      --brand-dark: #cf4710;
+      --line: rgba(31, 42, 47, 0.12);
+      --accent: #327281;
+      --shadow: 0 24px 60px rgba(31, 42, 47, 0.12);
+      --radius: 28px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(254, 94, 21, 0.12), transparent 32%),
+        radial-gradient(circle at top right, rgba(50, 114, 129, 0.14), transparent 28%),
+        linear-gradient(180deg, #fff 0%, var(--bg) 100%);
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      background: #1f2a2f;
+      color: #fff;
+      font-size: 0.92rem;
+    }
+
+    .topbar-inner,
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .topbar-inner {
+      min-height: 44px;
+    }
+
+    .topbar-links,
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255, 250, 243, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      min-height: 82px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--brand), #ff8d57);
+      color: #fff;
+      box-shadow: var(--shadow);
+      font-size: 1.2rem;
+    }
+
+    .nav-links a {
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: var(--brand);
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 50px;
+      padding: 0 24px;
+      border-radius: 999px;
+      font-weight: 700;
+      border: 0;
+      cursor: pointer;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .button-primary {
+      background: var(--brand);
+      color: #fff;
+    }
+
+    .button-primary:hover {
+      background: var(--brand-dark);
+    }
+
+    .button-secondary {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
+
+    .hero {
+      padding: 72px 0 48px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .hero-copy,
+    .hero-panel,
+    .card,
+    .sector,
+    .contact-card {
+      background: rgba(255, 250, 243, 0.78);
+      border: 1px solid rgba(31, 42, 47, 0.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-copy {
+      padding: 52px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(254, 94, 21, 0.12);
+      color: var(--brand);
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0 0 16px;
+      line-height: 1.08;
+    }
+
+    h1 {
+      font-size: clamp(2.6rem, 5vw, 5rem);
+      max-width: 11ch;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3.1rem);
+    }
+
+    .lead {
+      max-width: 60ch;
+      font-size: 1.08rem;
+      color: var(--muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .hero-points {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .hero-points div {
+      padding: 18px;
+      border-radius: 20px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    .hero-points strong {
+      display: block;
+      font-size: 1.45rem;
+      color: var(--brand);
+    }
+
+    .hero-panel {
+      padding: 34px;
+      display: grid;
+      gap: 18px;
+      align-content: start;
+    }
+
+    .panel-box {
+      padding: 22px;
+      background: linear-gradient(180deg, rgba(50, 114, 129, 0.08), rgba(255, 255, 255, 0.7));
+      border: 1px solid rgba(50, 114, 129, 0.15);
+      border-radius: 22px;
+    }
+
+    .panel-box ul {
+      padding-left: 18px;
+      margin: 14px 0 0;
+      color: var(--muted);
+    }
+
+    section {
+      padding: 48px 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: end;
+      margin-bottom: 26px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      padding: 28px;
+    }
+
+    .card-index {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: rgba(254, 94, 21, 0.12);
+      color: var(--brand);
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .card p,
+    .sector p,
+    .contact-card p {
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    .cta-band {
+      border-radius: 32px;
+      padding: 34px;
+      background: linear-gradient(135deg, #1f2a2f, #327281);
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .sectors {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .sector {
+      padding: 30px;
+    }
+
+    .sector ul {
+      margin: 18px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 20px;
+    }
+
+    .contact-card {
+      padding: 34px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .contact-item {
+      padding: 18px 20px;
+      border-radius: 18px;
+      background: #fff;
+      border: 1px solid var(--line);
+    }
+
+    form {
+      display: grid;
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px 18px;
+      font: inherit;
+      background: #fff;
+      color: var(--ink);
+    }
+
+    textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    footer {
+      padding: 30px 0 50px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--line);
+      padding-top: 22px;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .contact-grid,
+      .cards,
+      .sectors {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-points {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head,
+      .cta-band,
+      .nav-inner,
+      .topbar-inner {
+        align-items: start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .hero-copy,
+      .hero-panel,
+      .card,
+      .sector,
+      .contact-card,
+      .cta-band {
+        padding: 24px;
+      }
+
+      .nav-links,
+      .topbar-links {
+        gap: 12px;
+      }
+
+      h1 {
+        max-width: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="topbar-links">
+        <a href="tel:+390200000000">+39 02 0000 0000</a>
+        <a href="mailto:info@edilmilano-demo.it">info@edilmilano-demo.it</a>
+      </div>
+      <div>Ristrutturazioni e servizi edili a Milano e provincia</div>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a class="brand" href="#top">
+        <span class="brand-mark">EM</span>
+        <span>Edil Milano</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#servizi">Servizi</a>
+        <a href="#settori">Settori</a>
+        <a href="#impresa">Impresa</a>
+        <a href="#contatti">Contatti</a>
+      </nav>
+      <a class="button button-primary" href="#contatti">Richiedi una consulenza</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Impresa Edile Milano</span>
+          <h1>Ristrutturazioni Milano e Provincia</h1>
+          <p class="lead">
+            Una pagina dimostrativa ispirata alla struttura di un grande sito edile:
+            servizi civili, industriali e impiantistici raccolti in una sola vetrina,
+            con un taglio pulito e senza immagini o video.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#impresa">Vedi l'impresa edile</a>
+            <a class="button button-secondary" href="#servizi">Scopri i servizi</a>
+          </div>
+          <div class="hero-points">
+            <div>
+              <strong>360°</strong>
+              Gestione completa del cantiere
+            </div>
+            <div>
+              <strong>Milano</strong>
+              Interventi in citta e provincia
+            </div>
+            <div>
+              <strong>Rapido</strong>
+              Sopralluogo e proposta operativa
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-panel">
+          <div class="panel-box">
+            <h3>Ristrutturazioni</h3>
+            <p class="lead">Abitative, commerciali e industriali con coordinamento unico.</p>
+          </div>
+          <div class="panel-box">
+            <h3>Edilizia</h3>
+            <ul>
+              <li>Solai e massetti</li>
+              <li>Muri, tetti e scale</li>
+              <li>Cartongesso e cappotti</li>
+            </ul>
+          </div>
+          <div class="panel-box">
+            <h3>Impiantistica</h3>
+            <ul>
+              <li>Idraulico ed elettricista</li>
+              <li>Citofoni, fotovoltaico e gas</li>
+              <li>Ascensori e deumidificazione</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="servizi">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Servizi in evidenza</span>
+            <h2>Le aree principali del progetto</h2>
+          </div>
+          <p class="lead">Blocchi modulari pensati per ricordare una home edilizia ricca di categorie e call to action.</p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="card-index">01</div>
+            <h3>Ristrutturazione civile</h3>
+            <p>Bagni, cucine, appartamenti completi, finiture interne e ottimizzazione degli spazi abitativi.</p>
+          </article>
+          <article class="card">
+            <div class="card-index">02</div>
+            <h3>Ristrutturazione commerciale</h3>
+            <p>Negozi, uffici e locali professionali con attenzione a tempi, funzionalita e resa estetica.</p>
+          </article>
+          <article class="card">
+            <div class="card-index">03</div>
+            <h3>Ristrutturazione industriale</h3>
+            <p>Capannoni, edifici aziendali e spazi tecnici con lavorazioni integrate e organizzazione di cantiere.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="cta-band">
+          <div>
+            <span class="eyebrow" style="background: rgba(255,255,255,0.12); color: #fff;">Consulenza</span>
+            <h3 style="margin-top: 14px; margin-bottom: 8px;">Richiedi una valutazione del tuo intervento</h3>
+            <p style="margin: 0; color: rgba(255,255,255,0.8);">Una fascia CTA ampia, pensata per replicare il ritmo commerciale del sito di riferimento.</p>
+          </div>
+          <a class="button button-primary" href="#contatti">Parla con noi</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="settori">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Settori operativi</span>
+            <h2>Edilizia, serramenti e impianti</h2>
+          </div>
+          <p class="lead">Organizzazione a colonne per simulare le grandi macro-categorie del sito originale.</p>
+        </div>
+
+        <div class="sectors">
+          <article class="sector">
+            <h3>Edilizia civile e residenziale</h3>
+            <p>Interventi strutturali e di finitura per abitazioni private, condomini e piccoli complessi.</p>
+            <ul>
+              <li>Solai</li>
+              <li>Massetti</li>
+              <li>Piastrelle</li>
+              <li>Muri</li>
+              <li>Tetti</li>
+              <li>Scale</li>
+              <li>Cartongessi</li>
+              <li>Cappotti</li>
+            </ul>
+          </article>
+
+          <article class="sector">
+            <h3>Edilizia industriale</h3>
+            <p>Soluzioni orientate a strutture produttive e spazi tecnici di medio e grande formato.</p>
+            <ul>
+              <li>Demolizioni e scavi</li>
+              <li>Costruzioni industriali</li>
+              <li>Rivestimento pareti</li>
+              <li>Bonifica amianto</li>
+            </ul>
+          </article>
+
+          <article class="sector">
+            <h3>Serramenti e infissi</h3>
+            <p>Servizi collegati alle chiusure esterne e interne con posa e assistenza.</p>
+            <ul>
+              <li>Fabbro</li>
+              <li>Zanzariere</li>
+              <li>Finestre</li>
+              <li>Tende da sole</li>
+              <li>Porte</li>
+            </ul>
+          </article>
+
+          <article class="sector">
+            <h3>Impiantistica civile e industriale</h3>
+            <p>Una sezione dedicata agli impianti per richiamare il mix tecnico-commerciale del modello.</p>
+            <ul>
+              <li>Idraulico</li>
+              <li>Elettricista</li>
+              <li>Citofonista</li>
+              <li>Fotovoltaici</li>
+              <li>Frigorista</li>
+              <li>Caldaie e scaldabagni</li>
+              <li>Ascensori</li>
+              <li>Deumidificazione</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="impresa">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Impresa</span>
+            <h2>Una presentazione ampia, ma senza media</h2>
+          </div>
+          <p class="lead">Qui ho mantenuto il tono da landing commerciale, ma sostituendo i contenuti visivi con testo e blocchi informativi.</p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="card-index">A</div>
+            <h3>Metodo</h3>
+            <p>Analisi dell'intervento, pianificazione delle lavorazioni, coordinamento delle maestranze e controllo finale.</p>
+          </article>
+          <article class="card">
+            <div class="card-index">B</div>
+            <h3>Copertura</h3>
+            <p>Operativita concentrata su Milano e provincia, con taglio pratico e impostazione orientata al cantiere.</p>
+          </article>
+          <article class="card">
+            <div class="card-index">C</div>
+            <h3>Approccio</h3>
+            <p>Comunicazione semplice, CTA frequenti e struttura pensata per accompagnare l'utente fino al contatto.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contatti">
+      <div class="container contact-grid">
+        <div class="contact-card">
+          <span class="eyebrow">Contatti</span>
+          <h2>Richiedi una consulenza</h2>
+          <p>Questa area chiude la pagina con un'impostazione molto vicina a una classica landing del settore edilizio.</p>
+
+          <div class="contact-list">
+            <div class="contact-item">
+              <strong>Telefono</strong><br>
+              +39 02 0000 0000
+            </div>
+            <div class="contact-item">
+              <strong>Email</strong><br>
+              info@edilmilano-demo.it
+            </div>
+            <div class="contact-item">
+              <strong>Zona operativa</strong><br>
+              Milano e provincia
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <h3>Invia la tua richiesta</h3>
+          <p>Modulo demo statico, pronto da collegare a un backend o a un servizio di form.</p>
+          <form>
+            <input type="text" name="nome" placeholder="Nome e cognome">
+            <input type="email" name="email" placeholder="Email">
+            <input type="tel" name="telefono" placeholder="Telefono">
+            <textarea name="messaggio" placeholder="Descrivi il tuo intervento"></textarea>
+            <button class="button button-primary" type="submit">Invia richiesta</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>Demo ispirata a una landing di impresa edile, ricostruita senza immagini e senza video.</div>
+      <div><a href="#top">Torna su</a></div>
+    </div>
+  </footer>
+</body>
+</html>
