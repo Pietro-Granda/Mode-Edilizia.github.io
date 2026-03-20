@@ -174,9 +174,9 @@ button {
   border-radius: 18px;
   background-image:
     linear-gradient(rgba(20, 20, 20, 0.55), rgba(20, 20, 20, 0.55)),
-    url("hero.jpg");
+    url("1.jpeg");
   background-size: cover;
-  background-position: center;
+  background-position: center 40%;
   background-repeat: no-repeat;
 }
 
